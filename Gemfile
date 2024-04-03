@@ -27,6 +27,9 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem 'dotenv-rails'
+gem 'devise'
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
