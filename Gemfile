@@ -30,7 +30,7 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
-
+gem 'line-bot-api'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
