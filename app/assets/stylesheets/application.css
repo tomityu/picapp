@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+.swiper {
+    width: 100%;
+    height: 100vh;
+}
+
+.swiper-wrapper {
+    height: auto;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    padding: 4px;
+}

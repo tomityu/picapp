@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :master do
     root to: 'dashboard#index'
     get 'dashboard', to: 'dashboard#index'
+    resources :pictures, only: %i[index show]
   end
   namespace :api do
     post 'line_messaging', to: 'line_messaging#create'

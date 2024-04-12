@@ -75,4 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.hosts.clear
+
+  config.web_console.allowed_ips = '0.0.0.0/0'
 end

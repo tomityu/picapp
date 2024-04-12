@@ -1,2 +1,8 @@
 <h1><%= ENV['MESSAGE'] %></h1>
-<%= image_tag @picture.file %>
+<%= render 'shared/user_login_check' %>
+<% @pictures.each do |picture| %>
+    <p>file</p>
+    <%= image_tag picture.file %>
+    <p>preview</p>
+    <%= image_tag picture.preview %>
+<% end %>
