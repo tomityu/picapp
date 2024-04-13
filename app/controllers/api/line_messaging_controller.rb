@@ -21,6 +21,8 @@ class Api::LineMessagingController < ApplicationController
         user = User.find_or_initialize_by(uid: uid)
         user.name = res['displayName']
         user.image_url = res['pictureUrl']
+        user.email = "#{uid}@example.com"
+        user.password = SecureRandom.base64(10)
         user.save!
         client.reply_message(reply_token, { type: :text, text: '友だち追加ありがとう！プロフィール取得したよ' })
     end
