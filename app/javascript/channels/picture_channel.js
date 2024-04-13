@@ -10,9 +10,7 @@ consumer.subscriptions.create("PictureChannel", {
   },
 
   received(data) {
-    const html = `<div class="swiper-slide"><img src="${data.file_path}" loading="lazy" ></div>`;
-    const pictures = document.getElementById('pictures');
-    pictures.insertAdjacentHTML('beforeend', html);
-    mySwiper.update()
+    console.log('arrived!!!!!!!')
+    newPictures.push({ user_name: data.user_name, user_image_url: data.user_image_url, file_path: data.file_path })
   }
 });

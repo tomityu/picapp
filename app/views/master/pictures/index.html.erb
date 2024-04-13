@@ -4,7 +4,7 @@
     <div class="swiper-wrapper" id="pictures">
         <!-- 各スライド -->
         <% @pictures.each do |picture| %>
-            <div class="swiper-slide"><%= image_tag picture.preview %></div>
+            <div class="swiper-slide"><%= image_tag picture.file %></div>
         <% end %>
     </div>
  
@@ -12,7 +12,72 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
 </div>
+<dialog id="modalDialog" class="dialog" style="display: none;">
+    <div id="dialog-container">
+        <header>
+            <h1 id="modalTitle">***さんから写真が届きました！</h1>
+        </header>
+        <div>
+            <img id="modalImage" src="xxx">
+        </div>
+    </div>
+</dialog>
 <script>
+    const newPictures = []
+    let isShowing = false
+    const pictures = document.getElementById('pictures');
+    const modal = document.getElementById('modalDialog');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalOpen = () => {
+        modal.removeAttribute("style")
+        modal.showModal();
+    }
+    modal.addEventListener("close", async(e) => {
+        await waitDialogAnimation(e.target)
+        modal.style.display = "none"
+    })
+    const waitDialogAnimation = (dialog) => Promise.allSettled(
+        Array.from(dialog.getAnimations()).map(animation => animation.finished)
+    );
+    const showPictureOnModal = (tempPictures, index) => {
+        const picture = tempPictures[index]
+        if (picture === undefined) {
+            isShowing = false
+            return
+        }
+        modalTitle.textContent = `${picture.user_name} さんから写真が届きました！`
+        modalImage.setAttribute('src', picture.file_path)
+        modalImage.onload = () => {
+            modalOpen()
+            const html = `<div class="swiper-slide"><img src="${picture.file_path}"></div>`;
+            pictures.insertAdjacentHTML('beforeend', html);
+            mySwiper.update()
+            setTimeout(() => {
+                modal.close();
+                index++
+                setTimeout(() => {
+                    showPictureOnModal(tempPictures, index)
+                }, 200)
+            }, 5000)
+        }
+    }
+    const startShowNewPictures = () => {
+        isShowing = true
+        const tempPictures = newPictures.map(picture => ({ user_name: picture.user_name, user_image_url: picture.user_image_url, file_path: picture.file_path }))
+        console.log(`tempPictures.length: ${tempPictures.length}`)
+        if (tempPictures.length === 0) {
+            isShowing = false
+            return
+        }
+        newPictures.splice(0)
+        showPictureOnModal(tempPictures, 0)
+    }
+    setInterval(() => {
+        if (!isShowing) {
+            startShowNewPictures()
+        }
+    }, 1000);
     const mySwiper = new Swiper ('.swiper', {
         // オプションパラメータ(一部のみ抜粋)
         loop: true, // 最後のスライドまで到達した場合、最初に戻らずに続けてスライド可能にするか。
@@ -38,4 +103,5 @@
             prevEl: '.swiper-button-prev', // 前のスライドボタンのセレクタ
         },
     });
+
 </script>

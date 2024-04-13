@@ -30,16 +30,17 @@ class Api::LineMessagingController < ApplicationController
         when 'text'
             client.reply_message(reply_token, { type: :text, text: 'テキストを受診！' })
         when 'image'
-            picture = save_picture(client, uid, message[:id])
-            broadcast_picture(picture) if picture.present?
-            client.reply_message(reply_token, { type: :text, text: '画像を受信！' })
+            user = User.find_by(uid: uid)
+            return if user.nil?
+
+            picture = save_picture(client, user, message[:id])
+                broadcast_picture(user, picture)
+                client.reply_message(reply_token, { type: :text, text: '画像を受信！' })
+            end
         end
     end
 
-    def save_picture(client, uid, image_id)
-        user = User.find_by(uid: uid)
-        return if user.nil?
-
+    def save_picture(client, user, image_id)
         file = client.get_message_content(image_id).body
         preview = client.get(
             'https://api-data.line.me/v2',
@@ -52,9 +53,9 @@ class Api::LineMessagingController < ApplicationController
         picture
     end
 
-    def broadcast_picture(picture)
+    def broadcast_picture(user, picture)
         path = Rails.application.routes.url_helpers.rails_representation_url(picture.file.variant({}), only_path: true)
-        ActionCable.server.broadcast('picture_channel', { file_path: url_for(picture.preview) })
+        ActionCable.server.broadcast('picture_channel', { user_name: user.name, user_image_url: user.image_url, file_path: url_for(picture.file) })
     end
 
     def line_client
