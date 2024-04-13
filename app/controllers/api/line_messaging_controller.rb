@@ -34,6 +34,7 @@ class Api::LineMessagingController < ApplicationController
             return if user.nil?
 
             picture = save_picture(client, user, message[:id])
+            if picture.present?
                 broadcast_picture(user, picture)
                 client.reply_message(reply_token, { type: :text, text: '画像を受信！' })
             end
