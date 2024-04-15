@@ -79,7 +79,7 @@
     }
     const startShowNewPictures = () => {
         isShowing = true
-        const tempPictures = newPictures.map(picture => ({ user_name: picture.user_name, user_image_url: picture.user_image_url, file_path: picture.file_path }))
+        const tempPictures = newPictures.map(picture => ({ user_name: picture.user_name, user_image picture.user_image, file_path: picture.file_path }))
         if (tempPictures.length === 0) {
             isShowing = false
             return
