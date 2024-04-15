@@ -11,11 +11,12 @@
     <div class="swiper-button-next"></div>
 </div>
 <dialog id="modalDialog" class="dialog" style="display: none;">
-    <div id="dialog-container">
-        <header>
-            <h1 id="modalTitle">***さんから写真が届きました！</h1>
+    <div class="dialog-container" id="dialog-container">
+        <header class="dialog-header">
+            <img class="user-image" id="userImage" src="xxx">
+            <span id="modalTitle">yuki tomitaさんから写真が届きました！</span>
         </header>
-        <div>
+        <div class="dialog-content">
             <img id="modalImage" src="xxx">
         </div>
     </div>
@@ -28,6 +29,7 @@
     const modal = document.getElementById('modalDialog');
     const modalTitle = document.getElementById('modalTitle');
     const modalImage = document.getElementById('modalImage');
+    const userImage = document.getElementById('userImage');
     const adjuster = `<div class="swiper-slide", id="adjuster"></div>`;
     const modalOpen = () => {
         modal.removeAttribute("style")
@@ -48,6 +50,7 @@
         }
         modalTitle.textContent = `${picture.user_name} さんから写真が届きました！`
         modalImage.setAttribute('src', picture.file_path)
+        userImage.setAttribute('src', picture.user_image)
         modalImage.onload = () => {
             modalOpen()
             let element = document.getElementById('dummy')

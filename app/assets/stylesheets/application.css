@@ -74,11 +74,48 @@ body {
     position: fixed;
     inset-inline: 0;
     inset-block: 0;
-
     animation-name: fadeOut;
     animation-fill-mode: forwards;
     animation-duration: 200ms;
     animation-timing-function: ease-out;
+    height: 720px;
+    width: 1200px;
+    background-color: #333333;
+    color: #dddddd;
+    border-color: black;
+    border-radius: 1%;
+    text-align: center;
+}
+
+.dialog-header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 40px;
+}
+
+.dialog-header span {
+    font-size: 50px;
+    margin-left: 20px;
+}
+
+.dialog-content {
+    max-height: 620px;
+    max-width: 100%;
+    width: auto;
+    text-align: center;
+}
+
+.dialog-content img {
+    max-height: 620px;
+    max-width: 100%;
+    width: auto;
 }
 
 .dialog[open] {
