@@ -4,7 +4,10 @@
     <div class="swiper-wrapper" id="pictures">
         <!-- 各スライド -->
         <% @pictures.each do |picture| %>
-            <div class="swiper-slide"><%= image_tag picture.file %></div>
+            <div class="swiper-slide"><%= image_tag picture.preview %></div>
+        <% end %>
+        <% (15 - @pictures.count).times do %>
+            <div class="swiper-slide" id='dummy'><%= image_tag 'dummy.png' %></div>
         <% end %>
     </div>
  
@@ -25,10 +28,12 @@
 <script>
     const newPictures = []
     let isShowing = false
+    let totalNewPictureCount = 0
     const pictures = document.getElementById('pictures');
     const modal = document.getElementById('modalDialog');
     const modalTitle = document.getElementById('modalTitle');
     const modalImage = document.getElementById('modalImage');
+    const adjuster = `<div class="swiper-slide", id="adjuster"></div>`;
     const modalOpen = () => {
         modal.removeAttribute("style")
         modal.showModal();
@@ -50,9 +55,21 @@
         modalImage.setAttribute('src', picture.file_path)
         modalImage.onload = () => {
             modalOpen()
+            let element = document.getElementById('dummy')
+            if (element) {
+                element.remove()
+            } else {
+                Array.from(pictures.children).forEach(child => {
+                    if (child.id === 'adjuster') { child.remove() }
+                })
+                Array(2 - totalNewPictureCount % 3).fill().forEach(() => {
+                    pictures.insertAdjacentHTML('beforeend', adjuster);
+                })
+            }
             const html = `<div class="swiper-slide"><img src="${picture.file_path}"></div>`;
             pictures.insertAdjacentHTML('beforeend', html);
             mySwiper.update()
+            totalNewPictureCount++
             setTimeout(() => {
                 modal.close();
                 index++
@@ -65,7 +82,6 @@
     const startShowNewPictures = () => {
         isShowing = true
         const tempPictures = newPictures.map(picture => ({ user_name: picture.user_name, user_image_url: picture.user_image_url, file_path: picture.file_path }))
-        console.log(`tempPictures.length: ${tempPictures.length}`)
         if (tempPictures.length === 0) {
             isShowing = false
             return
@@ -74,6 +90,7 @@
         showPictureOnModal(tempPictures, 0)
     }
     setInterval(() => {
+        console.log(`pictures.childElementCount: ${pictures.childElementCount}`)
         if (!isShowing) {
             startShowNewPictures()
         }
@@ -81,21 +98,21 @@
     const mySwiper = new Swiper ('.swiper', {
         // オプションパラメータ(一部のみ抜粋)
         loop: true, // 最後のスライドまで到達した場合、最初に戻らずに続けてスライド可能にするか。
-        speed: 600, // スライドが切り替わるトランジション時間(ミリ秒)。
+        speed: 1000, // スライドが切り替わるトランジション時間(ミリ秒)。
         slidesPerView: 4, // 何枚のスライドを表示するか
         spaceBetween: 0, // スライド間の余白サイズ(ピクセル)
         direction: 'horizontal', // スライド方向。 'horizontal'(水平) か 'vertical'(垂直)。effectオプションが 'slide' 以外は無効。
         effect: 'slide', // "slide", "fade"(フェード), "cube"(キューブ回転), "coverflow"(カバーフロー) または "flip"(平面回転)
         grid: {
-            fill: 'row',
+            //fill: 'row',
             rows: 3,
         },
 
-        autoplay: {
-            delay: 3000, // スライドが切り替わるまでの表示時間(ミリ秒)
-            stopOnLast: false, // 最後のスライドまで表示されたら自動再生を中止するか
-            disableOnInteraction: false // ユーザーのスワイプ操作を検出したら自動再生を中止するか
-        },
+        //autoplay: {
+        //    delay: 2000, // スライドが切り替わるまでの表示時間(ミリ秒)
+        //    stopOnLast: false, // 最後のスライドまで表示されたら自動再生を中止するか
+        //    disableOnInteraction: false // ユーザーのスワイプ操作を検出したら自動再生を中止するか
+        //},
     
         // 前後スライドへのナビゲーションを表示する場合
         navigation: {
