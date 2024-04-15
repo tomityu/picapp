@@ -41,8 +41,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = "wss://picapp.tomityu.com/cable"
-  config.action_cable.allowed_request_origins = [ "https://picapp.tomityu.com", /http:\/\/picapp.tomityu.*/ ]
+  config.action_cable.url = "wss://tomistagram.tomityu.com/cable"
+  config.action_cable.allowed_request_origins = [ "https://tomistagram.tomityu.com", /http:\/\/tomistagram.tomityu.*/ ]
   ActionCable.server.config.disable_request_forgery_protection = true
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
@@ -91,7 +91,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-    "picapp.tomityu.com", "picapp"
+    "tomistagram.tomityu.com", "tomistagram"
     # "example.com",     # Allow requests from example.com
     # /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   ]
