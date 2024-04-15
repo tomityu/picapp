@@ -10,6 +10,7 @@ consumer.subscriptions.create("PictureChannel", {
   },
 
   received(data) {
+    console.log(data)
     newPictures.push({ user_name: data.user_name, user_image: data.user_image, file_path: data.file_path })
   }
 });
