@@ -1,17 +1,12 @@
-<!-- スライダー全体を括るメインコンテナ -->
 <div class="swiper">
-    <!-- 全スライドをまとめるラッパー -->
     <div class="swiper-wrapper" id="pictures">
-        <!-- 各スライド -->
         <% @pictures.each do |picture| %>
-            <div class="swiper-slide"><%= image_tag picture.preview %></div>
+            <div class="swiper-slide"><%= image_tag picture.file %></div>
         <% end %>
         <% (15 - @pictures.count).times do %>
             <div class="swiper-slide" id='dummy'><%= image_tag 'dummy.png' %></div>
         <% end %>
     </div>
- 
-    <!-- 前後スライドへのナビゲーションボタン(矢印)を表示する場合 -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
 </div>
@@ -90,35 +85,31 @@
         showPictureOnModal(tempPictures, 0)
     }
     setInterval(() => {
-        console.log(`pictures.childElementCount: ${pictures.childElementCount}`)
         if (!isShowing) {
             startShowNewPictures()
         }
     }, 1000);
     const mySwiper = new Swiper ('.swiper', {
-        // オプションパラメータ(一部のみ抜粋)
-        loop: true, // 最後のスライドまで到達した場合、最初に戻らずに続けてスライド可能にするか。
-        speed: 1000, // スライドが切り替わるトランジション時間(ミリ秒)。
-        slidesPerView: 4, // 何枚のスライドを表示するか
-        spaceBetween: 0, // スライド間の余白サイズ(ピクセル)
-        direction: 'horizontal', // スライド方向。 'horizontal'(水平) か 'vertical'(垂直)。effectオプションが 'slide' 以外は無効。
-        effect: 'slide', // "slide", "fade"(フェード), "cube"(キューブ回転), "coverflow"(カバーフロー) または "flip"(平面回転)
+        loop: true,
+        speed: 1000,
+        slidesPerView: 4,
+        spaceBetween: 0,
+        direction: 'horizontal',
+        effect: 'slide',
         grid: {
             //fill: 'row',
             rows: 3,
         },
 
-        //autoplay: {
-        //    delay: 2000, // スライドが切り替わるまでの表示時間(ミリ秒)
-        //    stopOnLast: false, // 最後のスライドまで表示されたら自動再生を中止するか
-        //    disableOnInteraction: false // ユーザーのスワイプ操作を検出したら自動再生を中止するか
-        //},
+        autoplay: {
+            delay: 2000,
+            stopOnLast: false,
+            disableOnInteraction: false
+        },
     
-        // 前後スライドへのナビゲーションを表示する場合
         navigation: {
-            nextEl: '.swiper-button-next', // 次のスライドボタンのセレクタ
-            prevEl: '.swiper-button-prev', // 前のスライドボタンのセレクタ
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
     });
-
 </script>

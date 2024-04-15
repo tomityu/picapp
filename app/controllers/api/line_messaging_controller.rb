@@ -58,7 +58,7 @@ class Api::LineMessagingController < ApplicationController
 
     def broadcast_picture(user, picture)
         path = Rails.application.routes.url_helpers.rails_representation_url(picture.file.variant({}), only_path: true)
-        ActionCable.server.broadcast('picture_channel', { user_name: user.name, user_image_url: user.image_url, file_path: url_for(picture.preview) })
+        ActionCable.server.broadcast('picture_channel', { user_name: user.name, user_image_url: user.image_url, file_path: url_for(picture.file) })
     end
 
     def line_client
