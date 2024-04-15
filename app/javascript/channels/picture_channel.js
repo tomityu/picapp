@@ -10,6 +10,6 @@ consumer.subscriptions.create("PictureChannel", {
   },
 
   received(data) {
-    newPictures.push({ user_name: data.user_name, user_image_url: data.user_image_url, file_path: data.file_path })
+    newPictures.push({ user_name: data.user_name, user_image: data.user_image, file_path: data.file_path })
   }
 });
