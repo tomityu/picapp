@@ -69,11 +69,11 @@
                 Array(2 - totalNewPictureCount % 3).fill().forEach(() => {
                     pictures.insertAdjacentHTML('beforeend', adjuster);
                 })
+                totalNewPictureCount++
             }
             const html = `<div class="swiper-slide"><img src="${picture.file_path}"></div>`;
             pictures.insertAdjacentHTML('beforeend', html);
             mySwiper.update()
-            totalNewPictureCount++
             setTimeout(() => {
                 modal.close();
                 index++
