@@ -30,4 +30,4 @@ production:
   username: <%= ENV.fetch('POSTGRE_USER') { 'postgres' } %>
   password: <%= ENV.fetch('POSTGRE_PASSWORD') { 'postgres' } %>
   database: <%= ENV.fetch('POSTGRE_DATABASE') { 'picapp_production' } %>
-  schema_search_path: <%= ENV.fetch('POSTGRE_DATABASE') { 'picapp_production' } %>
+  schema_search_path: <%= ENV.fetch('POSTGRE_SCHEMA') { 'picapp_production' } %>
