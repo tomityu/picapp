@@ -7,7 +7,7 @@
 <div class="swiper">
     <div class="swiper-wrapper" id="pictures">
         <% @pictures.each do |picture| %>
-            <div class="swiper-slide"><%= image_tag picture.file, class: 'swiper-image' %></div>
+            <div class="swiper-slide"><%= image_tag picture.file %></div>
         <% end %>
         <% (15 - @pictures.count).times do %>
             <div class="swiper-slide" id='dummy'><%= image_tag 'dummy.png', class: 'dummy-image' %></div>

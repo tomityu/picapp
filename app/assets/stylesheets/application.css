@@ -49,11 +49,11 @@ body {
     text-align: center;
 }
 
-/* .swiper-image {
+.swiper-slide img {
     max-height: 100%;
     max-width: 100%;
     width: auto;
-} */
+}
 
 .dummy-image {
     max-height: 100%;
