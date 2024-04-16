@@ -21,5 +21,13 @@ test:
   database: storage/test.sqlite3
 
 production:
-  <<: *default
-  database: storage/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  timeout: 5000
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  host: <%= ENV.fetch('POSTGRE_HOST') { '127.0.0.1' } %>
+  port: <%= ENV.fetch('POSTGRE_PORT') { 5432 } %>
+  username: <%= ENV.fetch('POSTGRE_USER') { 'postgres' } %>
+  password: <%= ENV.fetch('POSTGRE_PASSWORD') { 'postgres' } %>
+  database: <%= ENV.fetch('POSTGRE_DATABASE') { 'picapp_production' } %>
+  schema_search_path: <%= ENV.fetch('POSTGRE_DATABASE') { 'picapp_production' } %>
