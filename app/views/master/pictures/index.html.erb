@@ -1,10 +1,16 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <%= image_tag 'tomistagram_logo.png', class: 'logo' %>
+    </div>
+</header>
+
 <div class="swiper">
     <div class="swiper-wrapper" id="pictures">
         <% @pictures.each do |picture| %>
-            <div class="swiper-slide"><%= image_tag picture.file %></div>
+            <div class="swiper-slide"><%= image_tag picture.file, class: 'swiper-image' %></div>
         <% end %>
         <% (15 - @pictures.count).times do %>
-            <div class="swiper-slide" id='dummy'><%= image_tag 'dummy.png' %></div>
+            <div class="swiper-slide" id='dummy'><%= image_tag 'dummy.png', class: 'dummy-image' %></div>
         <% end %>
     </div>
     <div class="swiper-button-prev"></div>
