@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
 
     def index
-        @pictures = current_user.pictures
+        @pictures = Picture.all
     end
 end

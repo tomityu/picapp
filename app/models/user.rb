@@ -11,7 +11,6 @@ class User < ApplicationRecord
   end
 
   def set_values(omniauth)
-    # return if provider.to_s != omniauth["provider"].to_s || uid != omniauth["uid"]
     credentials = omniauth["credentials"]
     info = omniauth["info"]
 

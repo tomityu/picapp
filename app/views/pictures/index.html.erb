@@ -1,8 +1,15 @@
-<h1><%= ENV['MESSAGE'] %></h1>
-<%= render 'shared/user_login_check' %>
+<header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <%= image_tag 'tomistagram_logo.png', class: 'logo' %>
+    </div>
+</header>
+<div class="pictures-container">
+    <% 50.times do %>
+        <div class="image-container">
+            <%= image_tag 'dummy.png', class: 'picture' %>
+        </div>
+    <% end %>
+</div>
 <% @pictures.each do |picture| %>
-    <p>file</p>
     <%= image_tag picture.file %>
-    <p>preview</p>
-    <%= image_tag picture.preview %>
 <% end %>

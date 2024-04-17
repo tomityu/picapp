@@ -180,3 +180,25 @@ body {
     width: 100%;
     height: auto;
 }
+
+.pictures-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    display: flex;
+    height: auto;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.pictures-container img {
+    height: auto;
+    width: 96%;
+    padding: 2%;
+}
