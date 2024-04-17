@@ -105,7 +105,7 @@ body {
     animation-timing-function: ease-out;
     height: 720px;
     width: 1200px;
-    background-color: #333333;
+    background-color: black;
     color: #dddddd;
     border-color: black;
     border-radius: 1%;
@@ -148,4 +148,35 @@ body {
     animation-fill-mode: forwards;
     animation-duration: 200ms;
     animation-timing-function: ease-out;
+}
+
+.login-logo-container {
+    height: 60vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-logo {
+    margin-top: 100px;
+    width: auto;
+    height: 100px;
+}
+
+.login-button-container {
+    height: 40vh;
+    text-align: center;
+}
+
+.login-button {
+    background-color: black;
+    width: 200px;
+    padding: 0px;
+    border: 0px;
+}
+
+.login-button img {
+    width: 100%;
+    height: auto;
 }
