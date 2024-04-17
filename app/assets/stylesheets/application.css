@@ -181,6 +181,21 @@ body {
     height: auto;
 }
 
+.logout-button-container {
+    width: 100%;
+    height: auto;
+    text-align: right;
+}
+
+.logout-button {
+    fill: #dddddd;
+    margin-right: 10px;
+}
+
+.logout-button svg {
+    width: 30px;
+}
+
 .pictures-container {
     height: 100%;
     width: 100%;
