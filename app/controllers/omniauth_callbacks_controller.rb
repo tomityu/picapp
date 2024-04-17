@@ -12,6 +12,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile = User.find_or_initialize_by(provider: @omniauth['provider'], uid: @omniauth['uid'])
       @profile.name = @omniauth['info']['name']
       @profile.image_url = @omniauth['info']['image']
+      @profile.email = "#{@omniauth['uid']}@example.com"
       @profile.save!
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
