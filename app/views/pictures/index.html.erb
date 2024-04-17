@@ -3,13 +3,17 @@
         <%= image_tag 'tomistagram_logo.png', class: 'logo' %>
     </div>
 </header>
-<div class="pictures-container">
+<!--<div class="pictures-container">
     <% 50.times do %>
         <div class="image-container">
             <%= image_tag 'dummy.png', class: 'picture' %>
         </div>
     <% end %>
+</div>-->
+<div class="pictures-container">
+    <% @pictures.each do |picture| %>
+        <div class="image-container">
+            <%= image_tag picture.file, class: 'picture' %>
+        </div>
+    <% end %>
 </div>
-<% @pictures.each do |picture| %>
-    <%= image_tag picture.file %>
-<% end %>
