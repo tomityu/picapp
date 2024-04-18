@@ -22,6 +22,7 @@ body {
     color: #dddddd;
     margin: 0px;
     height: 100%;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -201,8 +202,12 @@ body {
 
 .favorite-box {
     position: absolute;
-    right: 0;
+    right: 2px;
     bottom: 8px;
+}
+
+.icon-size {
+    font-size: 20px;
 }
 
 .pictures-container img {
@@ -210,12 +215,3 @@ body {
     width: 98%;
     padding: 2%;
 }
-
-/* .favorite {
-    width: 50px;
-    height: 50px;
-    position: relative;
-    z-index: 100;
-    right: 50px;
-    top: 50px;
-} */

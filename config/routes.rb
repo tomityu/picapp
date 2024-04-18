@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
   resources :pictures, only: %i[index update]
   namespace :master do
-    root to: 'dashboard#index'
-    get 'dashboard', to: 'dashboard#index'
+    root to: 'dashboard#show'
+    resource :dashboard, only: %i[show]
     resources :pictures, only: %i[index show]
+    resource :broadcast, only: %i[new create]
   end
   namespace :api do
     post 'line_messaging', to: 'line_messaging#create'
