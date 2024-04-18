@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'omniauth_callbacks'
   }
 
-  resources :pictures, only: %i[index show]
+  resources :pictures, only: %i[index update]
   namespace :master do
     root to: 'dashboard#index'
     get 'dashboard', to: 'dashboard#index'

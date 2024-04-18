@@ -181,25 +181,6 @@ body {
     height: auto;
 }
 
-.logout-button-container {
-    width: 100%;
-    height: auto;
-    text-align: right;
-}
-
-.logout-button {
-    fill: #dddddd;
-    display: block;
-    width: 30px;
-    height: 30px;
-    padding-right: 10px;
-    margin: 0 0 0 auto;
-}
-
-.logout-button svg {
-    width: 30px;
-}
-
 .pictures-container {
     height: 100%;
     width: 100%;
@@ -214,10 +195,27 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+
+.favorite-box {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
 }
 
 .pictures-container img {
     height: auto;
-    width: 96%;
+    width: 98%;
     padding: 2%;
 }
+
+/* .favorite {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 100;
+    right: 50px;
+    top: 50px;
+} */

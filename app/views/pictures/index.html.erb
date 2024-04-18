@@ -1,24 +1,39 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <%= image_tag 'tomistagram_logo.png', class: 'logo' %>
-         <div class="logout-button-container">
-            <%= link_to(destroy_user_session_path, class: 'logout-button', data: { turbo_method: :delete }) do %>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"/></svg>
-            <% end %>
-        </div>
     </div>
 </header>
-<!--<div class="pictures-container">
-    <% 50.times do %>
-        <div class="image-container">
-            <%= image_tag 'dummy.png', class: 'picture' %>
-        </div>
-    <% end %>
-</div>-->
 <div class="pictures-container">
     <% @pictures.each do |picture| %>
         <div class="image-container">
-            <%= image_tag picture.file, class: 'picture' %>
+            <div class="image-box">
+                <%= image_tag picture.file, class: 'picture' %>
+            </div>
+            <div class="favorite-box">
+                <%= link_to picture_path(picture.id), class: 'favorite', method: :patch, remote: true do %>
+                    <button class="bubbly-button">
+                        <i class="fas fa-heart fa-xs"></i>
+                    </button>
+                <% end %>
+            </div>
         </div>
     <% end %>
 </div>
+<script>
+var animateButton = function(e) {
+
+  e.preventDefault;
+  e.target.classList.remove('animate');
+  
+  e.target.classList.add('animate');
+  setTimeout(function(){
+    e.target.classList.remove('animate');
+  },700);
+};
+
+var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+for (var i = 0; i < bubblyButtons.length; i++) {
+  bubblyButtons[i].addEventListener('click', animateButton, false);
+}
+</script>
