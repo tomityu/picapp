@@ -189,7 +189,11 @@ body {
 
 .logout-button {
     fill: #dddddd;
-    margin-right: 10px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding-right: 10px;
+    margin: 0 0 0 auto;
 }
 
 .logout-button svg {
