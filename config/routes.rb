@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :pictures, only: %i[index update]
   namespace :master do
-    root to: 'dashboard#show'
+    root to: 'dashboards#show'
     resource :dashboard, only: %i[show]
     resources :pictures, only: %i[index show]
     resource :broadcast, only: %i[new create]
