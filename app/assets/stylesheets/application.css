@@ -39,8 +39,8 @@ body {
 
 .swiper {
     width: 100%;
-    height: 93vh;
-    padding: 10px !important;
+    height: 90vh;
+    padding-top: 10px !important;
 }
 
 .swiper-wrapper {
@@ -199,6 +199,16 @@ body {
     position: relative;
 }
 
+.image-container-pc {
+    display: flex;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 
 .favorite-box {
     position: absolute;
@@ -214,4 +224,32 @@ body {
     height: auto;
     width: 98%;
     padding: 2%;
+}
+
+.presentation-slide {
+    background-color: black;
+    height: 100%;
+    text-align: center;
+}
+
+.presentation-slide h1 {
+    margin-top: 0px;
+    padding-top: 100px;
+    font-size: 150px;
+}
+
+.presentation-slide h2 {
+    font-size: 130px;
+}
+
+.presentation-slide h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 80px;
+}
+
+.presentation-slide img {
+    max-height: 700px;
+    max-width: 100%;
+    width: auto;
 }

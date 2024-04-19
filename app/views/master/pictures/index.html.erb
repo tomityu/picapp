@@ -28,16 +28,16 @@
     </div>
 </dialog>
 <script>
-    const newPictures = []
-    let isShowing = false
-    let totalNewPictureCount = 0
-    const pictures = document.getElementById('pictures');
-    const modal = document.getElementById('modalDialog');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalImage = document.getElementById('modalImage');
-    const userImage = document.getElementById('userImage');
-    const adjuster = `<div class="swiper-slide", id="adjuster"></div>`;
-    const modalOpen = () => {
+    var newPictures = []
+    var isShowing = false
+    var totalNewPictureCount = 0
+    var pictures = document.getElementById('pictures');
+    var modal = document.getElementById('modalDialog');
+    var modalTitle = document.getElementById('modalTitle');
+    var modalImage = document.getElementById('modalImage');
+    var userImage = document.getElementById('userImage');
+    var adjuster = `<div class="swiper-slide", id="adjuster"></div>`;
+    var modalOpen = () => {
         modal.removeAttribute("style")
         modal.showModal();
     }
@@ -45,11 +45,11 @@
         await waitDialogAnimation(e.target)
         modal.style.display = "none"
     })
-    const waitDialogAnimation = (dialog) => Promise.allSettled(
+    var waitDialogAnimation = (dialog) => Promise.allSettled(
         Array.from(dialog.getAnimations()).map(animation => animation.finished)
     );
-    const showPictureOnModal = (tempPictures, index) => {
-        const picture = tempPictures[index]
+    var showPictureOnModal = (tempPictures, index) => {
+        var picture = tempPictures[index]
         if (picture === undefined) {
             isShowing = false
             return
@@ -59,7 +59,7 @@
         userImage.setAttribute('src', picture.user_image)
         modalImage.onload = () => {
             modalOpen()
-            let element = document.getElementById('dummy')
+            var element = document.getElementById('dummy')
             if (element) {
                 element.remove()
             } else {
@@ -71,7 +71,7 @@
                 })
                 totalNewPictureCount++
             }
-            const html = `<div class="swiper-slide"><img src="${picture.file_path}"></div>`;
+            var html = `<div class="swiper-slide"><img src="${picture.file_path}"></div>`;
             pictures.insertAdjacentHTML('beforeend', html);
             mySwiper.update()
             setTimeout(() => {
@@ -83,9 +83,9 @@
             }, 5000)
         }
     }
-    const startShowNewPictures = () => {
+    var startShowNewPictures = () => {
         isShowing = true
-        const tempPictures = newPictures.map(picture => ({ user_name: picture.user_name, user_image: picture.user_image, file_path: picture.file_path }))
+        var tempPictures = newPictures.map(picture => ({ user_name: picture.user_name, user_image: picture.user_image, file_path: picture.file_path }))
         if (tempPictures.length === 0) {
             isShowing = false
             return
@@ -98,7 +98,7 @@
             startShowNewPictures()
         }
     }, 1000);
-    const mySwiper = new Swiper ('.swiper', {
+    var mySwiper = new Swiper ('.swiper', {
         loop: true,
         speed: 1000,
         slidesPerView: 4,

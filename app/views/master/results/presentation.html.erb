@@ -1,0 +1,74 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <%= image_tag 'tomistagram_logo.png', class: 'logo' %>
+    </div>
+</header>
+
+<div class="swiper">
+    <div class="swiper-wrapper" id="pictures">
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h1>第3位</h1>
+                <h2><%= @third.point %>票...</h2>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h3>第3位: <%= @third.user.name %>さん！</h3>
+                <%= image_tag @third.file %>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h1>第2位</h1>
+                <h2><%= @second.point %>票...</h2>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h3>第2位: <%= @second.user.name %>さん！</h3>
+                <%= image_tag @second.file %>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h1>第1位</h1>
+                <h2><%= @first.point %>票...</h2>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h3>第1位: <%= @first.user.name %>さん！</h3>
+                <%= image_tag @first.file %>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h1>新郎新婦特別賞...</h1>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="presentation-slide">
+                <h3>特別賞: <%= @special.user.name %>さん！</h3>
+                <%= image_tag @special.file %>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+<script>
+    var mySwiper = new Swiper ('.swiper', {
+        loop: false,
+        speed: 3000,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        direction: 'horizontal',
+        effect: 'fade',
+    
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>

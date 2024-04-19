@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resource :dashboard, only: %i[show]
     resources :pictures, only: %i[index show]
     resource :broadcast, only: %i[new create]
+    get 'results', to: 'results#show'
+    get 'results/new', to: 'results#new'
+    post 'results', to: 'results#create'
+    get 'results/presentation', to: 'results#presentation'
   end
   namespace :api do
     post 'line_messaging', to: 'line_messaging#create'
