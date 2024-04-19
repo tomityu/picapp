@@ -6,18 +6,15 @@ class MasterUsers::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     super
-    p '######### master new'
   end
 
   # POST /resource/sign_in
   def create
     super
-    p '######### master create'
   end
 
   # DELETE /resource/sign_out
   def destroy
-    p '######### master destroy'
     super
   end
 

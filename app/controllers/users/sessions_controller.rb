@@ -6,19 +6,16 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     super
-    p '######### new'
   end
 
   # POST /resource/sign_in
   def create
     super
-    p '######### create'
   end
 
   # DELETE /resource/sign_out
   def destroy
     super
-    p '######### destory'
   end
 
   protected
