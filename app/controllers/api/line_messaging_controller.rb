@@ -24,13 +24,13 @@ class Api::LineMessagingController < ApplicationController
         user.email = "#{uid}@example.com"
         user.password = SecureRandom.base64(10)
         user.save!
-        client.reply_message(reply_token, { type: :text, text: '友だち追加ありがとう！プロフィール取得したよ' })
+        client.reply_message(reply_token, { type: :text, text: build_welcome_message })
     end
 
     def reply_message(client, reply_token, message, uid)
         case message[:type]
         when 'text'
-            client.reply_message(reply_token, { type: :text, text: 'テキストを受診！' })
+            client.reply_message(reply_token, { type: :text, text: build_text_response })
         when 'image'
             user = User.find_by(uid: uid)
             return if user.nil?
@@ -38,7 +38,7 @@ class Api::LineMessagingController < ApplicationController
             picture = save_picture(client, user, message[:id])
             if picture.present?
                 broadcast_picture(user, picture)
-                client.reply_message(reply_token, { type: :text, text: '画像を受信！' })
+                client.reply_message(reply_token, { type: :text, text: build_image_response })
             end
         end
     end
@@ -66,5 +66,36 @@ class Api::LineMessagingController < ApplicationController
             config.channel_secret = ENV['MESSAGING_CHANNEL_SECRET']
             config.channel_token = ENV['MESSAGING_CHANNEL_TOKEN']
         }
+    end
+
+    def build_welcome_message
+        <<~message.chomp
+            友達に追加してくれてありがとう🐾
+            ココちゃんだよ
+            今日は富田家 今井家の結婚披露宴に遊びに来てるんだ
+            なにか手伝わされそうな予感…
+            詳しくは新郎からの説明をまっててね
+        message
+    end
+
+    def build_image_response
+        messages = [
+            '写真を受け取ったよ！ありがとう🐾',
+            'いい写真だね〜 もっとちょうだい🔥',
+            '👍',
+            '写真撮るの じょうず📸'
+        ]
+        messages.sample
+    end
+
+    def build_text_response
+        messages = [
+            'うん',
+            'そうなんだ🐾',
+            'なるほどね💡',
+            'にゃ〜',
+            "ERROR status:418\nI am a teapot, so I cannot answer that request. If you would like a refill of a drink, please ask the staff at the venue."
+        ]
+        messages.sample
     end
 end
