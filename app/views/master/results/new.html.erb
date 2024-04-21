@@ -9,6 +9,10 @@
             <div class="image-box">
                 <%= image_tag picture.file, class: 'picture' %>
             </div>
+            <div class="picture-info">
+                <span><%= picture.user.name %></span>
+                <span><%= picture.point %>pts</span>
+            </div>
             <div class="favorite-box">
                   <%= link_to master_results_path(params: { id: picture.id }), class: 'favorite', method: :post, remote: true do %>
                     <button class="bubbly-button">

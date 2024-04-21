@@ -5,7 +5,7 @@ class Master::ResultsController < ApplicationController
     end
 
     def new
-        @pictures = Picture.all.shuffle
+        @pictures = Picture.includes(:user).order(point: :desc)
     end
 
     def create
