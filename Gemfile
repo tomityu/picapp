@@ -35,6 +35,7 @@ gem 'image_processing', '~> 1.2'
 gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 gem "sassc-rails"
+gem 'rubyzip'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

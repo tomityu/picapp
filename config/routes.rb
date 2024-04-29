@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   namespace :master do
     root to: 'dashboards#show'
     resource :dashboard, only: %i[show]
-    resources :pictures, only: %i[index show]
     resource :broadcast, only: %i[new create]
+    get 'pictures', to: 'pictures#index'
+    get 'pictures/download', to: 'pictures#download'
     get 'results', to: 'results#show'
     get 'results/new', to: 'results#new'
     post 'results', to: 'results#create'
